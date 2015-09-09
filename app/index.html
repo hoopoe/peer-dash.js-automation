@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="DashPlayerAutomation" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Automation peer-dash</title>
+    <meta name="description" content="" />    
+
+    
+    <script src="bower_components/jquery-legacy/dist/jquery.min.js"></script>
+
+    
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+
+
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+<div ng-controller="AutomationController">
+	<p>Signaling servers:</p>
+	<div class="modal fade" id="streamModal">
+        <div class="modal-dialog">
+            <div class="list-group modal-list">
+                <a
+                   ng-repeat="item in signalingServers"
+                   href="#"
+                   class="list-group-item"                   
+                   data-dismiss="modal"
+                   >
+                    {{item.url}}
+                </a>
+            </div>
+        </div>
+    </div>
+    <p>Peers:</p>
+    <div>
+        <div class="modal-dialog">
+            <ul class="list-group modal-list">
+                <li
+                   ng-repeat="item in peers"
+                   href="#"
+                   class="list-group-item"                   
+                   data-dismiss="modal"
+                   >
+                    {{item}}
+
+                   <button ng-click="start(item)">
+                   		Start
+                   </button>
+
+                   <button ng-click="stop(item)">
+                   		Stop
+                   </button>
+                </li>                
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
