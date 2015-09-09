@@ -12,14 +12,16 @@
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>
 
+    <script src="bower_components/peerjs/peer.js"></script>
 
     <script src="js/main.js"></script>
 </head>
 <body>
 
 <div ng-controller="AutomationController">
-	<p>Signaling servers:</p>
-	<div class="modal fade" id="streamModal">
+    <p>Signaling servers:</p>    
+
+    <div class="modal fade" id="streamModal">
         <div class="modal-dialog">
             <div class="list-group modal-list">
                 <a
@@ -33,6 +35,9 @@
             </div>
         </div>
     </div>
+
+    <p>Self Id:</p>
+    {{selfId}}
     <p>Peers:</p>
     <div>
         <div class="modal-dialog">
@@ -46,11 +51,11 @@
                     {{item}}
 
                    <button ng-click="start(item)">
-                   		Start
+                        Start
                    </button>
 
                    <button ng-click="stop(item)">
-                   		Stop
+                        Stop
                    </button>
                 </li>                
             </ul>

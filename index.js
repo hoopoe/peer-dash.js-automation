@@ -8,7 +8,7 @@ var port = process.env.PORT || 5002;
 app.use(serveStatic('app'));
 
 app.listen(port, function() {
-    console.log("Server listening on port " + port);
+  console.log("Server listening on port " + port);
 });
 
 
@@ -42,10 +42,10 @@ app.listen(port, function() {
 // switch(cmd)
 // {
 // case 1:
-  
+
 //   break;
 // case 2:
-  
+
 //   break;
 // default:
 //   getPeers();
