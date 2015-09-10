@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <title>Automation peer-dash</title>
     <meta name="description" content="" />    
-
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     
     <script src="bower_components/jquery-legacy/dist/jquery.min.js"></script>
 
@@ -48,7 +48,8 @@
                    class="list-group-item"                   
                    data-dismiss="modal"
                    >
-                    {{item}}
+                  <label>{{item.id}}</label>
+                  <input type="text" name="input" ng-model="item.channel"></input>
 
                    <button ng-click="start(item)">
                         Start

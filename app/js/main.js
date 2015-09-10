@@ -1,5 +1,9 @@
 'use strict';
 
+var CHANNEL_URL = 'http://192.168.1.110/live/test.mpd',
+    START_CMD = 'start',
+    STOP_CMD = 'stop'
+
 angular.module('InfrastractureService', ['ngResource']).
 factory('SignalingServers', function($resource) {
   return $resource('singnaling_servers.json', {}, {
@@ -43,11 +47,12 @@ factory('SignalingManager', function($resource) {
           });
           return deferred.promise;
         },
-        sendCommand: function(peerId, command) {
-          var conn = me.connect(peerId);
-          conn.label = 'AUTOMATION'
+        sendCommand: function(e, command) {
+          var conn = me.connect(e.id);
+          conn.label = 'AUTOMATION';
           conn.on('open', function() {
-            conn.send('some command parameters!');
+            conn.send({'cmd': command, 
+              'channel': e.channel});
           });          
         }
       }
@@ -72,14 +77,18 @@ app.controller('AutomationController', function($scope, SignalingServers, Signal
   });
 
   SignalingManager.query(function(data) {
-    $scope.peers = data;
+    var items = [];
+    angular.forEach(data, function(i) {
+      items.push({id: i, channel: CHANNEL_URL});
+    });
+    $scope.peers = items;
   });
 
   $scope.start = function(e) {
-    PeerManager.sendCommand(e, 'start');
+    PeerManager.sendCommand(e, START_CMD);
   };
 
   $scope.stop = function(e) {
-    PeerManager.sendCommand(e, 'stop');
+    PeerManager.sendCommand(e, STOP_CMD);
   };
 });
