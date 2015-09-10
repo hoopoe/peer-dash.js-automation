@@ -51,10 +51,15 @@
                   <label>{{item.id}}</label>
                   <input type="text" name="input" ng-model="item.channel"></input>
 
-                   <button ng-click="start(item)">
-                        Start
+                   <button ng-click="load(item)">
+                        Load
                    </button>
-
+                   <button ng-click="play(item)">
+                        Play
+                   </button>
+                   <button ng-click="pause(item)">
+                        Pause
+                   </button>
                    <button ng-click="stop(item)">
                         Stop
                    </button>

@@ -1,8 +1,10 @@
 'use strict';
 
 var CHANNEL_URL = 'http://192.168.1.110/live/test.mpd',
-    START_CMD = 'start',
-    STOP_CMD = 'stop'
+    LOAD_CMD = 'load',
+    STOP_CMD = 'stop',
+    PLAY_CMD = 'play',
+    PAUSE_CMD = 'pause'
 
 angular.module('InfrastractureService', ['ngResource']).
 factory('SignalingServers', function($resource) {
@@ -84,8 +86,16 @@ app.controller('AutomationController', function($scope, SignalingServers, Signal
     $scope.peers = items;
   });
 
-  $scope.start = function(e) {
-    PeerManager.sendCommand(e, START_CMD);
+  $scope.load = function(e) {
+    PeerManager.sendCommand(e, LOAD_CMD);
+  };
+
+  $scope.play = function(e) {
+    PeerManager.sendCommand(e, PLAY_CMD);
+  };
+
+  $scope.pause = function(e) {
+    PeerManager.sendCommand(e, PAUSE_CMD);
   };
 
   $scope.stop = function(e) {
