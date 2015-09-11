@@ -62,9 +62,36 @@ factory('SignalingManager', function($resource) {
   ]);
 
 var app = angular.module('DashPlayerAutomation', [
+  'ngRoute',
   'InfrastractureService',
   'AutomationService',
 ]);
+
+app.config(['$logProvider', '$routeProvider', function($logProvider, $routeProvider) {
+  $logProvider.debugEnabled(true);
+  $routeProvider
+    .when('/', {
+      controller: 'HomeController',
+      controllerAs: 'home',
+      templateUrl: 'templates/home.html'
+    }).when('/action/:id/:name', {
+      controller: 'ActionController',
+      controllerAs: 'action',
+      templateUrl: 'templates/action.html'
+    })
+    .otherwise('/');
+}])
+
+app.controller('HomeController', function($scope) {
+
+});
+
+app.controller('ActionController', function($scope, $route, $log) {
+  var params = $route.current.pathParams;
+  console.log(params.id);
+  console.log(params.name);
+  document.write("Test");
+});
 
 app.controller('AutomationController', function($scope, SignalingServers, SignalingManager, PeerManager) {
   PeerManager.open()

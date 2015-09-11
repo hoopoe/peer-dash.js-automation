@@ -11,6 +11,7 @@
     
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
 
     <script src="bower_components/peerjs/peer.js"></script>
 
@@ -18,54 +19,6 @@
 </head>
 <body>
 
-<div ng-controller="AutomationController">
-    <p>Signaling servers:</p>    
+<div ng-view></div>
 
-    <div class="modal fade" id="streamModal">
-        <div class="modal-dialog">
-            <div class="list-group modal-list">
-                <a
-                   ng-repeat="item in signalingServers"
-                   href="#"
-                   class="list-group-item"                   
-                   data-dismiss="modal"
-                   >
-                    {{item.url}}
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <p>Self Id:</p>
-    {{selfId}}
-    <p>Peers:</p>
-    <div>
-        <div class="modal-dialog">
-            <ul class="list-group modal-list">
-                <li
-                   ng-repeat="item in peers"
-                   href="#"
-                   class="list-group-item"                   
-                   data-dismiss="modal"
-                   >
-                  <label>{{item.id}}</label>
-                  <input type="text" name="input" ng-model="item.channel"></input>
-
-                   <button ng-click="load(item)">
-                        Load
-                   </button>
-                   <button ng-click="play(item)">
-                        Play
-                   </button>
-                   <button ng-click="pause(item)">
-                        Pause
-                   </button>
-                   <button ng-click="stop(item)">
-                        Stop
-                   </button>
-                </li>                
-            </ul>
-        </div>
-    </div>
-</div>
 </body>
